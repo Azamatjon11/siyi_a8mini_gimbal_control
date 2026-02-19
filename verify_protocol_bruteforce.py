@@ -70,7 +70,7 @@ def test_config(ser, header, crc_name, crc_func):
     return False
 
 def main(port):
-    bauds = [115200, 57600]
+    bauds = [9600, 19200, 38400, 57600, 115200, 230400, 460800]
     headers = [0x6655, 0x5566]
     crcs = [("Init 0", crc16_ccitt_init_0), ("Init FFFF", crc16_ccitt_init_ffff)]
     
