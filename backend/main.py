@@ -6,6 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import uvicorn
 import os
+import struct
 
 from .siyi_driver import SiyiDriver
 from .connection import ConnectionManager
@@ -111,19 +112,24 @@ async def websocket_endpoint(websocket: WebSocket):
                 
                 # Discrete Control Logic
                 # Yaw: -1 (Left), 1 (Right) | Pitch: 1 (Up), -1 (Down)
+                # Discrete Control Logic
+                # Yaw: -1 (Left), 1 (Right) | Pitch: 1 (Up), -1 (Down)
+                # Payload: 1 byte for speed (0-100)
+                speed_byte = struct.pack('B', speed) # Use the speed from UI
+                
                 if yaw == 1:
                      # Rotate Right (ID 3)
-                     await driver.send_cmd(3, b'', expect_ack=False)
+                     await driver.send_cmd(3, speed_byte, expect_ack=False)
                 elif yaw == -1:
                      # Rotate Left (ID 4)
-                     await driver.send_cmd(4, b'', expect_ack=False)
+                     await driver.send_cmd(4, speed_byte, expect_ack=False)
                 
                 if pitch == 1:
                      # Rotate Up (ID 1)
-                     await driver.send_cmd(1, b'', expect_ack=False)
+                     await driver.send_cmd(1, speed_byte, expect_ack=False)
                 elif pitch == -1:
                      # Rotate Down (ID 2)
-                     await driver.send_cmd(2, b'', expect_ack=False)
+                     await driver.send_cmd(2, speed_byte, expect_ack=False)
                      
                 if yaw == 0 and pitch == 0:
                      # Stop (ID 5)

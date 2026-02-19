@@ -147,6 +147,7 @@ class SerialProtocol(asyncio.Protocol):
         self.transport = transport
 
     def data_received(self, data):
+        # logger.info(f"RX: {data.hex()}")  # Debug: Verify we get ANY bytes
         self.buffer.extend(data)
         self._process_buffer()
 
