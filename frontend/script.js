@@ -90,6 +90,7 @@ document.getElementById('speed-slider').oninput = (e) => {
 
 // Gimbal Control (Hold to Move)
 const sendMove = (yaw, pitch) => {
+    log(`UI: Move ${yaw}, ${pitch} @ ${currentSpeed}%`);
     ws.send(JSON.stringify({
         type: 'gimbal_rate',
         yaw: yaw,

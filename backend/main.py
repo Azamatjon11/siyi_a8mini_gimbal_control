@@ -103,6 +103,7 @@ async def websocket_endpoint(websocket: WebSocket):
         while True:
             data = await websocket.receive_json()
             msg_type = data.get("type")
+            logger.info(f"WS Recv: {msg_type} {data}")
             
             if msg_type == "gimbal_rate":
                 # {yaw: -1..1, pitch: -1..1, speed: 0..100}

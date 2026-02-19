@@ -109,6 +109,7 @@ class SiyiDriver:
                 self.ack_futures[seq] = fut
                 
             try:
+                logger.info(f"TX: {encoded.hex()}")
                 self.transport.write(encoded)
                 if not expect_ack:
                     return True
