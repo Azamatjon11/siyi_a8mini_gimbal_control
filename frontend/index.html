@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIYI Gimbal Controller</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>SIYI Gimbal Control</h1>
+            <div id="status-indicator" class="status offline">Disconnected</div>
+        </header>
+
+        <section class="card connection-card">
+            <h2>Connection</h2>
+            <div class="input-group">
+                <input type="text" id="port-input" list="port-list"
+                    placeholder="Select or type port (e.g. /dev/ttyUSB0)">
+                <datalist id="port-list"></datalist>
+                <select id="baud-select">
+                    <option value="115200">115200</option>
+                    <option value="57600">57600</option>
+                </select>
+                <button id="btn-connect">Connect</button>
+            </div>
+            <div class="stats">
+                <span>Last ACK: <span id="last-ack">Never</span></span>
+                <span>Errors: <span id="error-count">0</span></span>
+            </div>
+        </section>
+
+        <div class="grid-controls">
+            <section class="card gimbal-card">
+                <h2>Gimbal Movement</h2>
+                <div class="dpad">
+                    <button class="d-btn up" id="btn-up">▲</button>
+                    <button class="d-btn left" id="btn-left">◀</button>
+                    <button class="d-btn center" id="btn-center">●</button>
+                    <button class="d-btn right" id="btn-right">▶</button>
+                    <button class="d-btn down" id="btn-down">▼</button>
+                </div>
+                <div class="slider-group">
+                    <label>Speed <span id="speed-val">50</span>%</label>
+                    <input type="range" id="speed-slider" min="0" max="100" value="50">
+                </div>
+                <button id="btn-stop" class="full-width danger">STOP</button>
+            </section>
+
+            <section class="card camera-card">
+                <h2>Camera</h2>
+                <div class="btn-row">
+                    <button id="btn-zoom-in">Zoom In (+)</button>
+                    <button id="btn-zoom-out">Zoom Out (-)</button>
+                </div>
+                <button id="btn-photo">Take Photo</button>
+                <button id="btn-record" class="record-btn">Record Video</button>
+            </section>
+        </div>
+
+        <section class="card log-card">
+            <h2>Log</h2>
+            <div id="log-container"></div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

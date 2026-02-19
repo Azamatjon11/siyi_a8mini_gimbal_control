@@ -1,0 +1,111 @@
+:root {
+    --bg-color: #1a1a1a;
+    --card-bg: #2d2d2d;
+    --text-color: #e0e0e0;
+    --accent: #007bff;
+    --success: #28a745;
+    --danger: #dc3545;
+    --offline: #6c757d;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.status.online { background-color: var(--success); color: white; }
+.status.offline { background-color: var(--offline); color: white; }
+
+.card {
+    background-color: var(--card-bg);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+input, select, button {
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+}
+button {
+    cursor: pointer;
+    background-color: var(--accent);
+    color: white;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+button:hover { opacity: 0.9; }
+button:active { transform: scale(0.98); }
+
+.grid-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+@media (max-width: 600px) {
+    .grid-controls { grid-template-columns: 1fr; }
+}
+
+.dpad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    width: 150px;
+    margin: 0 auto 15px auto;
+}
+.d-btn {
+    aspect-ratio: 1;
+    font-size: 1.2em;
+}
+.up { grid-column: 2; }
+.left { grid-column: 1; grid-row: 2; }
+.center { grid-column: 2; grid-row: 2; background-color: #555; }
+.right { grid-column: 3; grid-row: 2; }
+.down { grid-column: 2; grid-row: 3; }
+
+.full-width { width: 100%; }
+.danger { background-color: var(--danger); }
+
+.btn-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.btn-row button { flex: 1; }
+
+#log-container {
+    height: 150px;
+    overflow-y: auto;
+    background: #000;
+    padding: 5px;
+    font-family: monospace;
+    font-size: 0.9em;
+    color: #0f0;
+}
